@@ -1,6 +1,6 @@
 <?php
 $pageTitle = '用户登录';
-require_once 'includes/header.php'
+require_once 'includes/header.php';
 ?>
 
 <main class="home">

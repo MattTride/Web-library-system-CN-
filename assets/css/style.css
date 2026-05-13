@@ -242,3 +242,32 @@ a {
     color: var(--primary-dark);
     font-weight: 600;
 }
+
+.table-section {
+    margin-bottom: 60px;
+    overflow-x: auto;
+}
+
+.record-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+}
+
+.record-table th,
+.record-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+.record-table th {
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.record-table tr:last-child td {
+    border-bottom: none;
+}
