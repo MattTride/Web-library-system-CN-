@@ -1,6 +1,9 @@
 <?php
 $pageTitle = '图书浏览';
+require_once 'includes/db.php';
 require_once 'includes/header.php';
+$stmt = $pdo->query('SELECT * FROM books ORDER BY id DESC');
+$books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main class="home">
@@ -17,37 +20,27 @@ require_once 'includes/header.php';
         </div>
     </section>
 
-    <section class="features">
-        <div class="feature-card">
-            <h2>网络安全等级保护</h2>
-            <p>作者：网安学院</p>
-            <p>分类：学习</p>
-            <p>库存：3 本</p>
-            <div class="hero-buttons">
-                <a class="btn primary" href="borrow.php">点击借阅</a>
-            </div>
-        </div>
+    <?php if (empty($books)): ?>
+        <section class="feature-card">
+            <h2>暂无图书</h2>
+            <p>数据库中还没有图书信息，可以先去新增图书。</p>
+        </section>
+    <?php else: ?>
+        <section class="features">
+            <?php foreach ($books as $book): ?>
+                <div class="feature-card">
+                    <h2><?php echo htmlspecialchars($book['title']); ?></h2>
+                    <p>作者：<?php echo htmlspecialchars($book['author']); ?></p>
+                    <p>分类：<?php echo htmlspecialchars($book['category']); ?></p>
+                    <p>库存：<?php echo htmlspecialchars($book['stock']); ?> 本</p>
 
-        <div class="feature-card">
-            <h2>Web开发与安全</h2>
-            <p>作者：计算机学院</p>
-            <p>分类：前端开发</p>
-            <p>库存：1 本</p>
-            <div class="hero-buttons">
-                <a class="btn primary" href="borrow.php">点击借阅</a>
-            </div>
-        </div>
-
-        <div class="feature-card">
-            <h2>PHP 与 Web 表单开发</h2>
-            <p>作者：周明</p>
-            <p>分类：后端基础</p>
-            <p>库存：4 本</p>
-            <div class="hero-buttons">
-                <a class="btn primary" href="borrow.php">点击借阅</a>
-            </div>
-        </div>
-    </section>
+                    <div class="hero-buttons">
+                        <a class="btn primary" href="borrow.php?id=<?php echo $book['id']; ?>">点击借阅</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </section>
+    <?php endif; ?>
 </main>
 
 <?php
