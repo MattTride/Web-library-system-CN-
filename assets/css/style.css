@@ -271,3 +271,12 @@ a {
 .record-table tr:last-child td {
     border-bottom: none;
 }
+
+.delete-form {
+    display: inline;
+}
+
+.delete-form button {
+    font-family: inherit;
+}
+

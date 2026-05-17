@@ -36,6 +36,12 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     <div class="hero-buttons">
                         <a class="btn primary" href="borrow.php?id=<?php echo $book['id']; ?>">点击借阅</a>
+                        <a class="btn secondary" href="book_edit.php?id=<?php echo $book['id']; ?>">编辑</a>
+
+                        <form class="delete-form" action="book_delete.php" method="post" onsubmit="return confirm('确定要删除这本书吗？');">
+                            <input type="hidden" name="id" value="<?php echo $book['id']; ?>">
+                            <button class="btn secondary" type="submit">删除</button>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>
